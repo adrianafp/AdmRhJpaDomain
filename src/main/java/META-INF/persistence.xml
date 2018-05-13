@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="AdmRhJpaDomain">
+      <provider>org.hibernate.ejb.HibernatePersistence</provider>
+      <jta-data-source>java:jboss/datasources/AdmEarDs</jta-data-source>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ayuda</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.FbancosModocobro</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gcargas</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gcategorias</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ggrados</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gorganigrama</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gparametros</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gplanta</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fadicionesdesc</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fadicionesdescf</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fadpermanentes</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fafaladiprestamos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fafiliaciones</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcabezalrecibos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcodigos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcomplementobasico</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcostoaladianual</class>      
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcostoaladisalud</class>      
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fhaberesliquidados</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcostoaladiegresos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fdatosdistribintereses</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ffonasa</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Finteresesdistrib</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fmovimientos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fmutualistas</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fmutualistasplanes</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fparamcargas</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fparametros</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fparamfuncionario</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fprestamos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fprocedimientos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fprestamosconsumo</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fadicionesdescsalud</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fafaladiprstevolucion</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcabezalreciboshist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcabezalrecibotmp</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fcostoaladihist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fhabereshist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fhaberesliquidadostmp</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Flogfondo</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fmovimientoshist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fparametroshist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fprestamosconsumohist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fprestamoshist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fresultadosdistribucion</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fsaldos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fsaldosacum</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fsaldoshistoria</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fsaldosultimomes</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fsueldomes</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ftipomovimiento</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ftipoprestamo</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gbajacargas</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gmodcargas</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gplantahist</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rajusteanio</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rajustehis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rausenteh</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rausentes</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rcategorias</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rcodigos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rferiados</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rlogreloj</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcas</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcames</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcatmp</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcorig</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcorighis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rprocedimientos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rol</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rparam</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Usuario</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.UsuarioRol</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rhorarios</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rhorarioshis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rresumanio</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rresumenm</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rresumencomp</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rresumentran</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rresumenhis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ractreganio</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcanio</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcashis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ractreghis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rboleta</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rlicencia</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Fsolicitudprestamos</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Gvinculofuncionariocargo</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rboletashis</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Ftasasprestamo</class>
+      <class>uy.org.aladi.admrh.jpadomain.entities.Rmarcamestmp</class>
+      <properties>
+         <!-- Properties for Hibernate -->
+            <property name="hibernate.transaction.manager_lookup_class"
+                value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+         <property name="hibernate.hbm2ddl.auto" value="update" />
+         <property name="hibernate.show_sql" value="false" />
+      </properties>
+	</persistence-unit>
+</persistence>
