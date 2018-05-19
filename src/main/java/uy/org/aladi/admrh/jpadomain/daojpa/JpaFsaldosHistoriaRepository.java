@@ -1,6 +1,7 @@
 package uy.org.aladi.admrh.jpadomain.daojpa;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -24,10 +25,8 @@ public class JpaFsaldosHistoriaRepository extends JpaRepository<Fsaldoshistoria,
 	}
 
 	public BigDecimal sumaPorPeriodo(String anioMes1, String anioMes2) {
-		BigDecimal bdsuma = (BigDecimal)entityManager.createQuery("select Sum(fsh.capitalDispActual) " +
-				"from Fsaldoshistoria fsh where fsh.mesLiquidacion >= :anioMes1 and " +
-				"fsh.mesLiquidacion <= :anioMes2 ")
-				.setParameter("anioMes1", anioMes1)
+		BigDecimal bdsuma = (BigDecimal)entityManager.createQuery("select Sum(fsh.numerales) " +
+				"from Fsaldoshistoria fsh where fsh.mesLiquidacion = :anioMes2 ")
 				.setParameter("anioMes2", anioMes2)
 				.getSingleResult();
 			return bdsuma;
@@ -36,11 +35,9 @@ public class JpaFsaldosHistoriaRepository extends JpaRepository<Fsaldoshistoria,
 
 	public BigDecimal sumaPorPeriodoyTarjetas(String anioMes1, String anioMes2,
 			String tarjetas) {
-		BigDecimal bdsuma = (BigDecimal)entityManager.createQuery("select Sum(fsh.capitalDispActual) " +
-			"from Fsaldoshistoria fsh where fsh.mesLiquidacion >= :anioMes1 and " +
-			"fsh.mesLiquidacion <= :anioMes2 and fsh.tarjeta NOT IN (" + tarjetas +
-			")")
-			.setParameter("anioMes1", anioMes1)
+		BigDecimal bdsuma = (BigDecimal)entityManager.createQuery("select Sum(fsh.numerales) " +
+			"from Fsaldoshistoria fsh where fsh.mesLiquidacion = :anioMes2 and " +
+			"fsh.tarjeta NOT IN (" + tarjetas +	")")
 			.setParameter("anioMes2", anioMes2)
 			.getSingleResult();
 		return bdsuma;
@@ -49,9 +46,8 @@ public class JpaFsaldosHistoriaRepository extends JpaRepository<Fsaldoshistoria,
 	public BigDecimal numeralesFuncionario(String anioMes1, String anioMes2,
 			Short tarjeta) {
 		BigDecimal bdNumerales = (BigDecimal)entityManager.createQuery("select " +
-			"Sum(fsh.capitalDispActual) from Fsaldoshistoria fsh where (fsh.mesLiquidacion >=:mes1 " +
-				"and fsh.mesLiquidacion <=:mes2) and fsh.tarjeta =:tar")
-				.setParameter("mes1", anioMes1)
+			"fsh.numerales from Fsaldoshistoria fsh where fsh.mesLiquidacion =:mes2 " +
+				"and fsh.tarjeta =:tar")
 				.setParameter("mes2", anioMes2)
 				.setParameter("tar", tarjeta)
 				.getSingleResult();
@@ -62,8 +58,15 @@ public class JpaFsaldosHistoriaRepository extends JpaRepository<Fsaldoshistoria,
 	public Fsaldoshistoria getByFuncyMesLiquidacion(String mesLiquidacion,
 			Short tarjeta) {
 		try{
+			Date fecha = (Date)entityManager.createQuery("select Max(fsh.fecha) form Fsaldoshistoria fsh where " +
+					"fsh.mesLiquidacion =:mes and fsh.tarjeta =:id")
+					.setParameter("mes", mesLiquidacion)
+					.setParameter("id", tarjeta)
+					.getSingleResult();
+					
 			Fsaldoshistoria saldos = (Fsaldoshistoria) entityManager.createQuery("from Fsaldoshistoria fsh " +
-					"where fsh.mesLiquidacion =:mes and fsh.tarjeta =:id")
+					"where fsh.fecha =:data and fsh.mesLiquidacion =:mes and fsh.tarjeta =:id")
+					.setParameter("data", fecha)
 					.setParameter("mes", mesLiquidacion)
 					.setParameter("id", tarjeta)
 					.getSingleResult();
@@ -160,6 +163,62 @@ public class JpaFsaldosHistoriaRepository extends JpaRepository<Fsaldoshistoria,
 			ret = false;
 		}
 		return ret;
+	}
+
+	@SuppressWarnings("unused")
+	@Override
+	public Boolean huboDistribucion(String mesLiquida) {
+		String motivo = "Distribución de utilidades";
+		try{
+			Fsaldoshistoria fsh = (Fsaldoshistoria) entityManager.createQuery("from Fsaldoshistoria fsh " +
+					"where fsh.mesLiquidacion =:mes and fsh.motivo =:motivo")
+					.setParameter("mes", mesLiquida)
+					.setParameter("motivo", motivo)
+					.getSingleResult();
+			return true;
+		}
+		catch(NoResultException nex){
+			return false;
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Fsaldoshistoria> getByMesLiquidacionyMotivo(String mesLiquida,
+			String motivo) {
+		try{
+			if(motivo.equalsIgnoreCase("Con Distribucion")){
+				motivo = "Distribución de utilidades";
+			}
+			else{
+				motivo = "Liquidación mensual";
+			}
+			return entityManager.createQuery("from Fsaldoshistoria fsh where fsh.mesLiquidacion =:mes " +
+					"and fsh.motivo =:motivo")
+					.setParameter("mes", mesLiquida)
+					.setParameter("motivo", motivo)
+					.getResultList();
+		}
+		catch(NoResultException nex){
+			return null;
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getMesesLiquidacionPorAnio(String anio) {
+		try{
+			List<String> lst = entityManager.createQuery("select distinct fh.mesLiquidacion from Fsaldoshistoria fh " +
+					"where substring(fh.mesLiquidacion, 1, 4) =:anio " )
+					.setParameter("anio", anio)
+					.getResultList();
+			return lst;
+		}
+		catch(NoResultException nex){
+			return null;
+		}
 	}
 
 

@@ -14,7 +14,10 @@ public interface FsaldoshistoriaRepository extends Repository<Fsaldoshistoria, L
 	List<Fsaldoshistoria> getByFuncionarioyPeriodo(Short tarjeta, String anioMes1, String anioMes2);
 	String deleteByMesLiquidacion(String mesLiquidacion);
 	String getMaxMesLiquidacion();
+	List<String> getMesesLiquidacionPorAnio(String anio);
 	List<Fsaldoshistoria> getByTarjetasyMesLiquidacion(String tarjetas, String mesLiquida);
 	List<Fsaldoshistoria> getByMesLiquidacion(String mesLiquida);
 	Boolean insertFromSaldosByFuncionario(Short tarjeta);
+	List<Fsaldoshistoria> getByMesLiquidacionyMotivo(String mesLiquida, String motivo);
+	Boolean huboDistribucion(String mesLiquida);
 }
